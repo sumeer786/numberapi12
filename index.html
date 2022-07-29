@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 id="text">Number API</h1>
+    <label for="comment">Enter Number :</label>
+    <input id="comment">
+    <button id="btn">Get Facts</button>
+
+    <div id="fact">
+        <p id="factext"></p>
+    </div>
+
+    <script>
+
+        function getApi() {
+        let number = comment.value
+
+
+        fetch('http://numbersapi.com/' + number)
+        .then(response => response.text())
+        .then(data => {
+            if (data && number != '') 
+            {
+                fact.style.display = 'block';
+                fact.innerHTML = data;
+            }
+    
+            number ? true : fact.style.display = 'none';
+            
+        })
+        .catch(err => console.error(err));
+        }
+
+        var btn = document.getElementById("btn")
+        btn.addEventListener("click",getApi)
+    </script>
+</body>
+</html>
